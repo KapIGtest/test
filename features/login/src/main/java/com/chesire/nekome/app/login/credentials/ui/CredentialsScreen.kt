@@ -61,6 +61,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.chesire.nekome.core.compose.autofill
 import com.chesire.nekome.core.compose.theme.NekomeTheme
 import com.chesire.nekome.resources.StringResource
+import rescourses.C
 
 @Composable
 fun CredentialsScreen(
@@ -100,12 +101,12 @@ private fun Render(
         snackbarHost = {
             SnackbarHost(
                 hostState = snackbarHostState,
-                modifier = Modifier.semantics { testTag = CredentialsTags.Snackbar }
+                modifier = Modifier.semantics { testTag = C.Tag.login_screen_snackbar }
             )
         },
         modifier = Modifier
             .fillMaxSize()
-            .semantics { testTag = CredentialsTags.Root }
+            .semantics { testTag = C.Tag.login_screen_root }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -196,7 +197,7 @@ private fun UsernameInput(
         singleLine = true,
         label = { Text(text = stringResource(id = StringResource.login_username)) },
         modifier = Modifier
-            .semantics { testTag = CredentialsTags.Username }
+            .semantics { testTag = C.Tag.login_screen_username_input }
             .autofill(
                 autofillTypes = listOf(AutofillType.EmailAddress, AutofillType.Username),
                 onFill = { onUsernameChanged(it) }
@@ -224,7 +225,10 @@ private fun PasswordInput(
             )
         },
         trailingIcon = {
-            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+            IconButton(
+                modifier = Modifier
+                    .semantics { testTag = C.Tag.login_screen_password_visible_button },
+                onClick = { passwordVisible = !passwordVisible }) {
                 Icon(
                     imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                     contentDescription = stringResource(
@@ -254,7 +258,7 @@ private fun PasswordInput(
         singleLine = true,
         label = { Text(text = stringResource(id = StringResource.login_password)) },
         modifier = Modifier
-            .semantics { testTag = CredentialsTags.Password }
+            .semantics { testTag = C.Tag.login_screen_password_input }
             .autofill(
                 autofillTypes = listOf(AutofillType.Password),
                 onFill = { onPasswordChanged(it) }
@@ -280,6 +284,8 @@ private fun LoginButton(isEnabled: Boolean, isLoggingIn: Boolean, onLoginPressed
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Button(
+        modifier = Modifier
+            .semantics { testTag = C.Tag.login_screen_login_button},
         enabled = isEnabled,
         onClick = {
             if (!isLoggingIn) {
@@ -333,8 +339,10 @@ private fun Preview() {
 }
 
 object CredentialsTags {
-    const val Root = "CredentialsRoot"
-    const val Username = "CredentialsUsername"
-    const val Password = "CredentialsPassword"
-    const val Snackbar = "CredentialsSnackbar"
+    const val Root = C.Tag.login_screen_root
+    const val Username = C.Tag.login_screen_username_input
+    const val Password = C.Tag.login_screen_password_input
+    const val PasswordVisible = C.Tag.login_screen_password_visible_button
+    const val Snackbar = C.Tag.login_screen_snackbar
+    const val LoginButton = C.Tag.login_screen_login_button
 }

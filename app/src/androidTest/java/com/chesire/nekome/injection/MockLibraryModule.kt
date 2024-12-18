@@ -8,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import io.mockk.mockk
 
-@Module
+/*@Module
 @TestInstallIn(
     components = [SingletonComponent::class],
     replaces = [LibraryModule::class]
@@ -18,4 +18,4 @@ class MockLibraryModule {
     @Provides
     @Reusable
     fun provideApi() = mockk<SeriesApi>()
-}
+}*/

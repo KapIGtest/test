@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import io.mockk.mockk
 
+/*
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
@@ -19,3 +20,4 @@ class MockSearchModule {
     @Reusable
     fun provideApi() = mockk<SearchApi>()
 }
+*/

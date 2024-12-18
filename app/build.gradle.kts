@@ -111,6 +111,7 @@ dependencies {
     implementation(libs.squareup.retrofit2.converter.moshi)
     implementation(libs.squareup.retrofit2)
     implementation(libs.timber)
+    implementation(libs.core)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.squareup.leakcanary)
     ksp(libs.androidx.hilt.compiler)
@@ -133,4 +134,14 @@ dependencies {
     androidTestImplementation(libs.google.hilt.android.testing)
     androidTestImplementation(libs.mockk.android)
     kspAndroidTest(libs.google.hilt.android.compiler)
+
+
+
+    testImplementation(libs.kaspresso)
+    testImplementation(libs.kaspresso.compose.support)
+    androidTestImplementation(libs.kaspresso)
+    androidTestImplementation(libs.kaspresso.compose.support)
+
+    api(libs.compose)
+    api(libs.androidx.ui.test)
 }

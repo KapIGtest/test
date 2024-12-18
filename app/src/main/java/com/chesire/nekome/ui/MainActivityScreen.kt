@@ -29,13 +29,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.chesire.nekome.resources.StringResource
 import kotlinx.coroutines.launch
+import rescourses.C
 
 @Composable
 fun MainActivityScreen(viewModel: MainActivityViewModel = viewModel()) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .semantics { testTag = MainActivityTags.Root }
+            .semantics { testTag = C.Tag.main_screen_root }
     ) {
         val state = viewModel.uiState.collectAsState()
         val navController = rememberNavController()
@@ -47,7 +48,7 @@ fun MainActivityScreen(viewModel: MainActivityViewModel = viewModel()) {
             snackbarHost = {
                 SnackbarHost(
                     hostState = snackbarHostState,
-                    modifier = Modifier.semantics { testTag = MainActivityTags.Snackbar }
+                    modifier = Modifier.semantics { testTag = C.Tag.main_screen_snackbar }
                 )
             },
             bottomBar = {
@@ -115,10 +116,10 @@ fun MainActivityScreen(viewModel: MainActivityViewModel = viewModel()) {
 }
 
 object MainActivityTags {
-    const val Root = "MainActivityRoot"
-    const val Snackbar = "MainActivitySnackbar"
-    const val Anime = "MainActivityAnime"
-    const val Manga = "MainActivityManga"
-    const val Search = "MainActivitySearch"
-    const val Settings = "MainActivitySettings"
+    const val Root = C.Tag.main_screen_root
+    const val Snackbar = C.Tag.main_screen_snackbar
+    const val Anime = C.Tag.main_screen_anime
+    const val Manga = C.Tag.main_screen_manga
+    const val Search = C.Tag.main_screen_search_input
+    const val Settings = C.Tag.main_screen_settings
 }
